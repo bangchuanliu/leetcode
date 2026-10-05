@@ -86,9 +86,8 @@ Just use the file name — class names are unique across the whole repo.
 When the same problem appears in more than one folder, the copy outside
 `leetcode-practice` is prefixed with its source, e.g. `AirbnbCoinChange`,
 `PrincetonTwoSum`, `PearlsQuickSort`, `ContestPermutation`,
-`StanfordUtil`. (If a duplicate name is ever added again, jrun prefers
-`leetcode-practice`, then `interview-practice`, then `algorithm-practice`, or
-shows a numbered list to pick from.)
+`StanfordUtil`. (If a duplicate name is ever added again, jrun shows a numbered list of
+the matches to pick from.)
 
 ### Use `jrun` from any folder
 

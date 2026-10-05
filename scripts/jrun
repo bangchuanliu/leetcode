@@ -10,9 +10,8 @@
 #
 # Looks for FileName.java under leetcode-practice/, interview-practice/ and every
 # module under algorithm-practice/ (each one's src/main/java). If the same
-# file name exists in several folders, leetcode-practice wins, then
-# interview-practice, then algorithm-practice. If it's still ambiguous you get
-# a numbered list to pick from. A path suffix always picks an exact file, e.g.:
+# file name exists in more than one place, you get a numbered list to pick
+# from. A path suffix always picks an exact file, e.g.:
 #   scripts/jrun dp/CoinChange
 set -euo pipefail
 
@@ -55,35 +54,19 @@ if [ "${#MATCHES[@]}" -eq 0 ]; then
   exit 1
 fi
 if [ "${#MATCHES[@]}" -gt 1 ]; then
-  # Prefer the first top-level folder with a match, in SRC_ROOTS order
-  # (leetcode-practice, then interview-practice, then algorithm-practice).
-  TOP="${MATCHES[0]%%/*}"
-  PREFERRED=()
-  OTHERS=()
-  for m in "${MATCHES[@]}"; do
-    if [ "${m%%/*}" = "$TOP" ]; then PREFERRED+=("$m"); else OTHERS+=("$m"); fi
-  done
-
-  if [ "${#PREFERRED[@]}" -gt 1 ]; then
-    echo "Multiple files named ${FILE_NAME}.java found:" >&2
-    i=1
-    for m in "${PREFERRED[@]}"; do echo "  $i) ${m#*|}" >&2; i=$((i + 1)); done
-    if [ -t 0 ] && [ -e /dev/tty ]; then
-      read -r -p "Pick one [1-${#PREFERRED[@]}]: " CHOICE < /dev/tty
-      if ! [[ "$CHOICE" =~ ^[0-9]+$ ]] || [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt "${#PREFERRED[@]}" ]; then
-        echo "Invalid choice." >&2
-        exit 1
-      fi
-      PREFERRED=("${PREFERRED[$((CHOICE - 1))]}")
-    else
-      echo "Rerun with a folder prefix, e.g. jrun <topic>/${FILE_NAME}" >&2
+  echo "Multiple files named ${FILE_NAME}.java found:" >&2
+  i=1
+  for m in "${MATCHES[@]}"; do echo "  $i) ${m#*|}" >&2; i=$((i + 1)); done
+  if [ -t 0 ] && [ -e /dev/tty ]; then
+    read -r -p "Pick one [1-${#MATCHES[@]}]: " CHOICE < /dev/tty
+    if ! [[ "$CHOICE" =~ ^[0-9]+$ ]] || [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt "${#MATCHES[@]}" ]; then
+      echo "Invalid choice." >&2
       exit 1
     fi
-  fi
-
-  MATCHES=("${PREFERRED[@]}")
-  if [ "${#OTHERS[@]}" -gt 0 ]; then
-    echo "Using ${MATCHES[0]#*|} (also found in ${#OTHERS[@]} other place(s); add a folder prefix to pick another)" >&2
+    MATCHES=("${MATCHES[$((CHOICE - 1))]}")
+  else
+    echo "Rerun with a folder prefix, e.g. jrun <folder>/${FILE_NAME}" >&2
+    exit 1
   fi
 fi
 
