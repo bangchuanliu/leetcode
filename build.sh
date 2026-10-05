@@ -2,7 +2,9 @@
 # Simple build script: no external dependencies, so plain javac is enough.
 set -euo pipefail
 
-SRC_DIR="src/main/java"
+cd "$(dirname "$0")"
+
+SRC_DIR="leetcode/src/main/java"
 OUT_DIR="out"
 
 rm -rf "$OUT_DIR"

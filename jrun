@@ -8,11 +8,10 @@
 # Array arguments are comma-separated, e.g.:
 #   ./jrun CoinChange coinChange 1,2,5 11
 #
-# Looks for FileName.java under this repo's src/main/java, the root-level
-# interview-questions/src/main/java, and every remaining module under
-# algorithm-examples/*/src/main/java. If the same file name exists in more
-# than one place, disambiguate with a path suffix instead of just the file
-# name, e.g.:
+# Looks for FileName.java under leetcode/, company-interviews/ and every
+# module under courses-and-books/ (each one's src/main/java). If the same
+# file name exists in more than one place, disambiguate with a path suffix
+# instead of just the file name, e.g.:
 #   ./jrun leetcode/dp/CoinChange coinChange 1,2,5 11
 set -euo pipefail
 
@@ -26,8 +25,10 @@ shift
 
 OUT_DIR=".jrun-out"
 
-SRC_ROOTS=("src/main/java" "interview-questions/src/main/java")
-for d in algorithm-examples/*/src/main/java; do
+cd "$(dirname "$0")"
+
+SRC_ROOTS=("leetcode/src/main/java" "company-interviews/src/main/java")
+for d in courses-and-books/*/src/main/java; do
   [ -d "$d" ] && SRC_ROOTS+=("$d")
 done
 
@@ -67,4 +68,9 @@ CLASS_NAME="${PACKAGE}.${FILE_NAME}"
 mkdir -p "$OUT_DIR"
 javac -d "$OUT_DIR" -sourcepath "$SRC_ROOT" "$MATCH" tools/JRunner.java
 
-java -cp "$OUT_DIR" JRunner "$CLASS_NAME" "$@"
+# Put the module's resources (data files loaded via getResource) on the classpath too.
+CLASSPATH_ARG="$OUT_DIR"
+RES_DIR="${SRC_ROOT%/java}/resources"
+[ -d "$RES_DIR" ] && CLASSPATH_ARG="$CLASSPATH_ARG:$RES_DIR"
+
+java -cp "$CLASSPATH_ARG" JRunner "$CLASS_NAME" "$@"
