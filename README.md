@@ -28,3 +28,16 @@ algorithm/data-structure topic so related practice problems stay together:
 - `unionfind` — union-find (disjoint set) problems
 
 Shared helper classes (`TreeNode`, `ListNode`, etc.) live in `src/main/java/common`.
+
+## Build
+
+There are no external/3rd-party dependencies, so a full Maven build isn't
+needed — plain `javac`/`java` is enough:
+
+```bash
+./build.sh                                       # compiles everything into out/
+java -cp out leetcode.dp.CoinChange              # run a specific solution
+```
+
+`build.sh` just runs `javac` over all sources in `src/main/java` and puts the
+compiled classes in `out/` (ignored by git).
