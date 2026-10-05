@@ -64,6 +64,18 @@ Examples:
 ./jrun CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
 ```
 
-Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun` finds
-the file anywhere under `src/main/java`, so you only need its name, not the
-full path.
+Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun` also
+searches every module under `algorithm-examples/*/src/main/java` (see
+[`algorithm-examples/README.md`](algorithm-examples/README.md)), so it works
+there too. If a file name exists in more than one place, `jrun` lists every
+match — rerun with a path suffix to disambiguate, e.g.
+`./jrun tag/dp/CoinChange`.
+
+## algorithm-examples
+
+`algorithm-examples/` is a separate, larger collection of algorithm practice
+(Stanford/Princeton course exercises, "Programming Pearls", interview-prep
+questions, and a second tagged LeetCode set). It's actually its own nested
+git repository rather than part of this one — see
+[`algorithm-examples/README.md`](algorithm-examples/README.md) for details
+on its modules and how to build/run it.

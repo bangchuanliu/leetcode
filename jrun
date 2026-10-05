@@ -7,6 +7,13 @@
 #
 # Array arguments are comma-separated, e.g.:
 #   ./jrun CoinChange coinChange 1,2,5 11
+#
+# Looks for FileName.java under this repo's src/main/java as well as every
+# module under algorithm-examples/*/src/main/java, so it also works for
+# files living in the nested algorithm-examples project. If the same file
+# name exists in more than one place, disambiguate with a path suffix
+# instead of just the file name, e.g.:
+#   ./jrun tag/dp/CoinChange coinChange 1,2,5 11
 set -euo pipefail
 
 if [ "$#" -lt 1 ]; then
@@ -17,26 +24,47 @@ fi
 FILE_NAME="$1"
 shift
 
-SRC_DIR="src/main/java"
 OUT_DIR=".jrun-out"
 
-MATCH=$(find "$SRC_DIR" -name "${FILE_NAME}.java")
-COUNT=$(echo "$MATCH" | grep -c . || true)
+SRC_ROOTS=("src/main/java")
+for d in algorithm-examples/*/src/main/java; do
+  [ -d "$d" ] && SRC_ROOTS+=("$d")
+done
 
-if [ -z "$MATCH" ]; then
-  echo "No file named ${FILE_NAME}.java found under $SRC_DIR" >&2
+MATCHES=()
+if [[ "$FILE_NAME" == */* ]]; then
+  REL="${FILE_NAME%.java}.java"
+  for root in "${SRC_ROOTS[@]}"; do
+    while IFS= read -r f; do
+      MATCHES+=("$root|$f")
+    done < <(find "$root" -path "*/${REL}")
+  done
+  FILE_NAME="$(basename "$REL" .java)"
+else
+  for root in "${SRC_ROOTS[@]}"; do
+    while IFS= read -r f; do
+      MATCHES+=("$root|$f")
+    done < <(find "$root" -name "${FILE_NAME}.java")
+  done
+fi
+
+if [ "${#MATCHES[@]}" -eq 0 ]; then
+  echo "No file named ${FILE_NAME}.java found under: ${SRC_ROOTS[*]}" >&2
   exit 1
 fi
-if [ "$COUNT" -gt 1 ]; then
+if [ "${#MATCHES[@]}" -gt 1 ]; then
   echo "Multiple files named ${FILE_NAME}.java found, pick one:" >&2
-  echo "$MATCH" >&2
+  for m in "${MATCHES[@]}"; do echo "  ${m#*|}" >&2; done
   exit 1
 fi
+
+SRC_ROOT="${MATCHES[0]%%|*}"
+MATCH="${MATCHES[0]#*|}"
 
 PACKAGE=$(grep -m1 '^package ' "$MATCH" | sed 's/package //; s/;//')
 CLASS_NAME="${PACKAGE}.${FILE_NAME}"
 
 mkdir -p "$OUT_DIR"
-javac -d "$OUT_DIR" -sourcepath "$SRC_DIR" "$MATCH" tools/JRunner.java
+javac -d "$OUT_DIR" -sourcepath "$SRC_ROOT" "$MATCH" tools/JRunner.java
 
 java -cp "$OUT_DIR" JRunner "$CLASS_NAME" "$@"
