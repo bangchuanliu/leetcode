@@ -12,7 +12,7 @@ solution as a public method (e.g. `coinChange(...)`), and many also include a
 | [`leetcode/`](leetcode) | LeetCode solutions grouped by topic: `leetcode/src/main/java/leetcode/<topic>` (+ shared helpers in `.../common`) |
 | [`company-interviews/`](company-interviews) | Company-tagged interview questions: `company-interviews/src/main/java/<company>` (`airbnb`, `facebook`, `google`) |
 | [`courses-and-books/`](courses-and-books) | Exercises from algorithm courses and books (Stanford, Princeton, Programming Pearls, competitive programming, HackerRank) — see its [README](courses-and-books/README.md) |
-| `jrun`, `build.sh`, `tools/` | Scripts for running a single file / building everything |
+| [`scripts/`](scripts) | `jrun` (run a single file), `build.sh` (build everything), `tools/` (runner helper), `target/` (build output, gitignored) |
 
 ## leetcode topics
 
@@ -56,32 +56,38 @@ needed — plain `javac`/`java` is enough.
 ### Build everything
 
 ```bash
-./build.sh                             # compiles everything under leetcode/ into out/
-java -cp out leetcode.dp.CoinChange    # run a specific solution (if it has a main method)
+scripts/build.sh                                     # compiles everything under leetcode/ into scripts/target/build
+java -cp scripts/target/build leetcode.dp.CoinChange # run a specific solution (if it has a main method)
 ```
 
 ### Run a single file with `jrun`
 
-The `jrun` script is the easy way to try out one solution without building
+The `scripts/jrun` script is the easy way to try out one solution without building
 the whole project or writing any extra code:
 
 ```bash
-./jrun FileName                        # compiles FileName.java and runs its main(...)
-./jrun FileName methodName             # compiles FileName.java and calls methodName() on it
-./jrun FileName methodName arg1 arg2   # ...passing arguments to the method
+scripts/jrun FileName                        # compiles FileName.java and runs its main(...)
+scripts/jrun FileName methodName             # compiles FileName.java and calls methodName() on it
+scripts/jrun FileName methodName arg1 arg2   # ...passing arguments to the method
 ```
 
 Examples:
 
 ```bash
-./jrun CoinChange                      # runs CoinChange's main(String[]) method
-./jrun CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
+scripts/jrun dp/CoinChange                   # runs CoinChange's main(String[]) method
+scripts/jrun dp/CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
 ```
 
 Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun`
 searches `leetcode/`, `company-interviews/` and every module in
 `courses-and-books/`, and can be invoked from any directory (e.g.
-`~/projects/leetcode/jrun CoinChange`). If a file name exists in more than
+`~/projects/leetcode/scripts/jrun CoinChange`). If a file name exists in more than
 one place, `jrun` lists every match — rerun with a path suffix to
-disambiguate, e.g. `./jrun leetcode/dp/CoinChange` or
-`./jrun airbnb/CoinChange`.
+disambiguate, e.g. `scripts/jrun leetcode/dp/CoinChange` or
+`scripts/jrun airbnb/CoinChange`.
+
+Tip: add an alias so you can just type `jrun` anywhere:
+
+```bash
+alias jrun=~/projects/leetcode/scripts/jrun
+```

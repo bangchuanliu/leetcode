@@ -33,11 +33,11 @@ mvn test
 
 ## Running a single file
 
-Use the top-level `jrun` script to compile and run one file without Maven:
+Use the top-level `scripts/jrun` script to compile and run one file without Maven:
 
 ```bash
-./jrun ClosestNumber                   # errors if ambiguous, listing every match
-./jrun Knapsack                        # data files in src/main/resources are on the classpath
-./jrun chapter2/Permutation            # disambiguate with a path suffix
+../scripts/jrun ClosestNumber                   # errors if ambiguous, listing every match
+../scripts/jrun Knapsack                        # data files in src/main/resources are on the classpath
+../scripts/jrun chapter2/Permutation            # disambiguate with a path suffix
 ```
 

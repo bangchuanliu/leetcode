@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # Compile and run a single solution file, without building the whole project.
 #
-#   ./jrun FileName                 # compiles FileName.java and runs its main(String[])
-#   ./jrun FileName methodName      # compiles FileName.java and calls methodName() on it
-#   ./jrun FileName methodName a b  # ...passing a, b as the method's arguments
+#   scripts/jrun FileName                 # compiles FileName.java and runs its main(String[])
+#   scripts/jrun FileName methodName      # compiles FileName.java and calls methodName() on it
+#   scripts/jrun FileName methodName a b  # ...passing a, b as the method's arguments
 #
 # Array arguments are comma-separated, e.g.:
-#   ./jrun CoinChange coinChange 1,2,5 11
+#   scripts/jrun CoinChange coinChange 1,2,5 11
 #
 # Looks for FileName.java under leetcode/, company-interviews/ and every
 # module under courses-and-books/ (each one's src/main/java). If the same
 # file name exists in more than one place, disambiguate with a path suffix
 # instead of just the file name, e.g.:
-#   ./jrun leetcode/dp/CoinChange coinChange 1,2,5 11
+#   scripts/jrun leetcode/dp/CoinChange coinChange 1,2,5 11
 set -euo pipefail
 
 if [ "$#" -lt 1 ]; then
@@ -23,9 +23,9 @@ fi
 FILE_NAME="$1"
 shift
 
-OUT_DIR=".jrun-out"
+OUT_DIR="scripts/target/jrun"
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 SRC_ROOTS=("leetcode/src/main/java" "company-interviews/src/main/java")
 for d in courses-and-books/*/src/main/java; do
@@ -66,7 +66,7 @@ PACKAGE=$(grep -m1 '^package ' "$MATCH" | sed 's/package //; s/;//')
 CLASS_NAME="${PACKAGE}.${FILE_NAME}"
 
 mkdir -p "$OUT_DIR"
-javac -d "$OUT_DIR" -sourcepath "$SRC_ROOT" "$MATCH" tools/JRunner.java
+javac -d "$OUT_DIR" -sourcepath "$SRC_ROOT" "$MATCH" scripts/tools/JRunner.java
 
 # Put the module's resources (data files loaded via getResource) on the classpath too.
 CLASSPATH_ARG="$OUT_DIR"
