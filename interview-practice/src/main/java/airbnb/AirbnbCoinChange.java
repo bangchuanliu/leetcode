@@ -2,7 +2,7 @@ package airbnb;
 
 import java.util.Arrays;
 
-public class CoinChange {
+public class AirbnbCoinChange {
 
     public static int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];

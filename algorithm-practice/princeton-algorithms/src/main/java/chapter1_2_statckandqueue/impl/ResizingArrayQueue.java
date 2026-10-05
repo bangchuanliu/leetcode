@@ -1,6 +1,6 @@
 package chapter1_2_statckandqueue.impl;
 
-import chapter1_1_basicprogrammingmodel.ArrayUtil;
+import chapter1_1_basicprogrammingmodel.PrincetonArrayUtil;
 import chapter1_1_basicprogrammingmodel.RandomUtil;
 import chapter1_2_statckandqueue.IRandomQueue;
 
@@ -40,7 +40,7 @@ public class ResizingArrayQueue<Item> implements IRandomQueue<Item> {
             throw new RuntimeException("stack is empty");
         }
         int r = RandomUtil.uniform(size - 1);
-        ArrayUtil.swap(items, r, size - 1);
+        PrincetonArrayUtil.swap(items, r, size - 1);
         Item item = items[--size];
         items[size] = null;
         if (size > 0 && size <= items.length / 4) {

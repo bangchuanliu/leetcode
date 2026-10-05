@@ -2,7 +2,7 @@ package chapter1_1_basicprogrammingmodel;
 
 import java.util.Arrays;
 
-public class ArrayUtil {
+public class PrincetonArrayUtil {
 
     public int max(int[] a) {
         int max = a[0];
@@ -61,7 +61,7 @@ public class ArrayUtil {
     }
 
     public static void main(String[] args) {
-        ArrayUtil arrayUtil = new ArrayUtil();
+        PrincetonArrayUtil arrayUtil = new PrincetonArrayUtil();
         int[] a = {1, 2, 3, 4, 5};
         int[][] c = {{1, 2}, {1, 2}};
         int[][] d = {{1, 2}, {1, 2}};

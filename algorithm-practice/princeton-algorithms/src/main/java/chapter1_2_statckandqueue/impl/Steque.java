@@ -1,18 +1,18 @@
 package chapter1_2_statckandqueue.impl;
 
 import chapter1_2_statckandqueue.IStack;
-import chapter1_2_statckandqueue.ListNode;
+import chapter1_2_statckandqueue.PrincetonListNode;
 
 import java.util.Iterator;
 
 public class Steque<Item> implements IStack<Item> {
-    private ListNode<Item> first;
+    private PrincetonListNode<Item> first;
     private int size = 0;
 
     @Override
     public void push(Item item) {
-        ListNode<Item> oldFirst = first;
-        first = new ListNode<>(item);
+        PrincetonListNode<Item> oldFirst = first;
+        first = new PrincetonListNode<>(item);
         first.next = oldFirst;
         size++;
     }
@@ -22,18 +22,18 @@ public class Steque<Item> implements IStack<Item> {
         if (isEmpty()) {
             throw new RuntimeException("stack is empty");
         }
-        ListNode<Item> node = first;
+        PrincetonListNode<Item> node = first;
         first = first.next;
         size--;
         return node.item;
     }
 
     public void enQueue(Item item) {
-        ListNode<Item> newNode = new ListNode<>(item);
+        PrincetonListNode<Item> newNode = new PrincetonListNode<>(item);
         if (isEmpty()) {
             first = newNode;
         } else {
-            ListNode<Item> node = first;
+            PrincetonListNode<Item> node = first;
             while (node.next != null) {
                 node = node.next;
             }

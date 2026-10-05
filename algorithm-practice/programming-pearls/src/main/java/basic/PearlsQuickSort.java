@@ -2,7 +2,7 @@ package basic;
 
 import java.util.Arrays;
 
-public class QuickSort {
+public class PearlsQuickSort {
 
     public static void main(String[] args) {
         int[] nums = {4,7,1,9,2,3};

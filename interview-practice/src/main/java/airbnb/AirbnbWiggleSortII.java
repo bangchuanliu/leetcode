@@ -2,7 +2,7 @@ package airbnb;
 
 import java.util.Arrays;
 
-public class WiggleSortII {
+public class AirbnbWiggleSortII {
 
     public static void wiggleSort(int[] nums) {
         Arrays.sort(nums);

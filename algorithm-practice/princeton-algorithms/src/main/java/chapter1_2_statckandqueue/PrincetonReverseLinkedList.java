@@ -1,17 +1,17 @@
 package chapter1_2_statckandqueue;
 
-public class ReverseLinkedList {
+public class PrincetonReverseLinkedList {
 
-    public static ListNode reverse(ListNode first) {
+    public static PrincetonListNode reverse(PrincetonListNode first) {
         if (first == null || first.next == null) {
             return first;
         }
 
-        ListNode p = first;
-        ListNode next = null;
+        PrincetonListNode p = first;
+        PrincetonListNode next = null;
 
         while (p != null) {
-            ListNode q = p.next;
+            PrincetonListNode q = p.next;
             p.next = next;
             next = p;
             p = q;
@@ -22,12 +22,12 @@ public class ReverseLinkedList {
 
     public static void main(String[] args) {
         Integer[] a = {1, 2, 3, 4, 5, 6, 7};
-        ListNode first = LinkedListUtil.createLinkedList(a);
+        PrincetonListNode first = LinkedListUtil.createLinkedList(a);
         LinkedListUtil.printLinkedList(first);
-        ListNode listNode = reverse(first);
+        PrincetonListNode listNode = reverse(first);
         LinkedListUtil.printLinkedList(listNode);
-        ListNode first2 = LinkedListUtil.createLinkedList(a);
-        ListNode listNode2 = reverse(first2);
+        PrincetonListNode first2 = LinkedListUtil.createLinkedList(a);
+        PrincetonListNode listNode2 = reverse(first2);
         LinkedListUtil.printLinkedList(listNode2);
     }
 }

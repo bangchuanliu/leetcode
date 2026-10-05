@@ -4,7 +4,7 @@ import chapter2_1_elementorysort.AbstractSort;
 
 import java.util.Arrays;
 
-public class QuickSort extends AbstractSort {
+public class PrincetonQuickSort extends AbstractSort {
 
     @Override
     public void sort(Comparable[] a) {
@@ -39,7 +39,7 @@ public class QuickSort extends AbstractSort {
 
     public static void main(String[] args) {
         Integer[] a = {6, 5, 2, 8, 0, 1, 8, 3, 9, 2};
-        QuickSort quickSort = new QuickSort();
+        PrincetonQuickSort quickSort = new PrincetonQuickSort();
         quickSort.sort(a);
         System.out.println(Arrays.toString(a));
     }

@@ -6,7 +6,7 @@ import chapter1_1_basicprogrammingmodel.StopWatch;
 
 import java.util.Arrays;
 
-public class FourSum {
+public class PrincetonFourSum {
 
     public static void count(int[] a) {
         int count = 0;

@@ -1,6 +1,6 @@
 package chapter2_4_priorityqueue;
 
-public interface MaxPQ<Key extends Comparable<Key>> {
+public interface PrincetonMaxPQ<Key extends Comparable<Key>> {
 
     void insert(Key v);
 

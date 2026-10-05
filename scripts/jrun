@@ -13,7 +13,7 @@
 # file name exists in several folders, leetcode-practice wins, then
 # interview-practice, then algorithm-practice. If it's still ambiguous you get
 # a numbered list to pick from. A path suffix always picks an exact file, e.g.:
-#   scripts/jrun airbnb/CoinChange
+#   scripts/jrun dp/CoinChange
 set -euo pipefail
 
 if [ "$#" -lt 1 ]; then

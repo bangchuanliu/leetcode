@@ -6,7 +6,7 @@ import chapter1_1_basicprogrammingmodel.StopWatch;
 
 import java.util.*;
 
-public class ThreeSum {
+public class PrincetonThreeSum {
 
     public static void count(int[] a) {
         int count = 0;

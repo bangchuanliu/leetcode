@@ -1,10 +1,10 @@
 package chapter2_4_heap;
 
-public class MaxPQ {
+public class PrincetonHeapMaxPQ {
     private int[] pq;
     private int N = 0;
 
-    public MaxPQ(int size) {
+    public PrincetonHeapMaxPQ(int size) {
         pq = new int[size + 1];
     }
 

@@ -2,7 +2,7 @@ package chapter2_2_mergesort;
 
 import chapter2_1_elementorysort.AbstractSort;
 
-public class MergeSort extends AbstractSort {
+public class PrincetonTopDownMergeSort extends AbstractSort {
 
     private static Comparable[] aux;
 
@@ -44,7 +44,7 @@ public class MergeSort extends AbstractSort {
 
     public static void main(String[] args) {
         Integer[] a = {3, 6, 0, 0, 9, 7, 4, 8, 8};
-        MergeSort mergeSort = new MergeSort();
+        PrincetonTopDownMergeSort mergeSort = new PrincetonTopDownMergeSort();
         mergeSort.sort(a);
         mergeSort.show(a);
     }

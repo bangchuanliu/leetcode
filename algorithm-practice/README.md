@@ -38,6 +38,6 @@ Use the top-level `scripts/jrun` script to compile and run one file without Mave
 ```bash
 ../scripts/jrun ClosestNumber                   # just the file name
 ../scripts/jrun Knapsack                        # data files in src/main/resources are on the classpath
-../scripts/jrun chapter2/Permutation            # folder prefix picks a specific copy
+../scripts/jrun PrincetonTwoSum                # duplicates are prefixed with their source
 ```
 

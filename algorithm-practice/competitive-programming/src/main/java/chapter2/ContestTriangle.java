@@ -1,6 +1,6 @@
 package chapter2;
 
-public class Triangle {
+public class ContestTriangle {
 
     public static void printReverseTriangle(int layer) {
         if (layer <= 0) {

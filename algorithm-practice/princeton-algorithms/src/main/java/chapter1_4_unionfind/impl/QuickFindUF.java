@@ -1,8 +1,8 @@
 package chapter1_4_unionfind.impl;
 
-import chapter1_4_unionfind.UF;
+import chapter1_4_unionfind.PrincetonUF;
 
-public class QuickFindUF implements UF {
+public class QuickFindUF implements PrincetonUF {
 
     private int[] a;
     private int count;

@@ -1,12 +1,12 @@
 package chapter1_2_statckandqueue;
 
-public class ListNode<Item> {
+public class PrincetonListNode<Item> {
     
-    public ListNode (Item item) {
+    public PrincetonListNode (Item item) {
         this.item = item;
         next = null;
     }
     
     public Item item;
-    public ListNode<Item> next;
+    public PrincetonListNode<Item> next;
 }

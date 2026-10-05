@@ -1,20 +1,20 @@
 package chapter1_2_statckandqueue.impl;
 
 import chapter1_2_statckandqueue.IQueue;
-import chapter1_2_statckandqueue.ListNode;
+import chapter1_2_statckandqueue.PrincetonListNode;
 
 import java.util.Iterator;
 
 public class LinkedListQueue<Item> implements IQueue<Item> {
 
-    private ListNode<Item> first;
-    private ListNode<Item> last;
+    private PrincetonListNode<Item> first;
+    private PrincetonListNode<Item> last;
     private int size = 0;
 
 
     @Override
     public void enQueue(Item item) {
-        ListNode<Item> node = new ListNode<>(item);
+        PrincetonListNode<Item> node = new PrincetonListNode<>(item);
         if (isEmpty()) {
             first = node;
             last = node;
@@ -30,7 +30,7 @@ public class LinkedListQueue<Item> implements IQueue<Item> {
         if (isEmpty()) {
             throw new RuntimeException("Queue is empty");
         }
-        ListNode<Item> node = first;
+        PrincetonListNode<Item> node = first;
         first = first.next;
         if (isEmpty()) {
             last = null;

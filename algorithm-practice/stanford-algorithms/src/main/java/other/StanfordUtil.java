@@ -2,7 +2,7 @@ package other;
 
 import java.io.UnsupportedEncodingException;
 
-public class Util {
+public class StanfordUtil {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         int i = 1;

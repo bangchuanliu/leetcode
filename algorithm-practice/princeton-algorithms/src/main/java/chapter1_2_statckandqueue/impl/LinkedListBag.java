@@ -1,18 +1,18 @@
 package chapter1_2_statckandqueue.impl;
 
 import chapter1_2_statckandqueue.IBag;
-import chapter1_2_statckandqueue.ListNode;
+import chapter1_2_statckandqueue.PrincetonListNode;
 
 import java.util.Iterator;
 
 public class LinkedListBag<Item> implements IBag<Item> {
-    private ListNode<Item> first;
+    private PrincetonListNode<Item> first;
     private int size = 0;
     
     @Override
     public void add(Item item) {
-        ListNode<Item> oldFirst = first;
-        first = new ListNode<>(item);
+        PrincetonListNode<Item> oldFirst = first;
+        first = new PrincetonListNode<>(item);
         first.next = oldFirst;
         size++;
     }

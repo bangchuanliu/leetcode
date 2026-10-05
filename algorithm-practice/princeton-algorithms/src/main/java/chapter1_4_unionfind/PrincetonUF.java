@@ -1,6 +1,6 @@
 package chapter1_4_unionfind;
 
-public interface UF {
+public interface PrincetonUF {
     public void union(int p, int q);
     
     public int find(int p);

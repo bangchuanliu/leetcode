@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSum {
+public class PearlsTwoSum {
 
     public static void main(String[] args) {
         int[] nums =  {3,4,5,6,7,1,2};

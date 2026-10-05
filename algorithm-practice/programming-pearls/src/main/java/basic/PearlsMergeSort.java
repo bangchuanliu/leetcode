@@ -2,7 +2,7 @@ package basic;
 
 import java.util.Arrays;
 
-public class MergeSort {
+public class PearlsMergeSort {
     public static void main(String[] args) {
         int[] nums = {4, 7, 1, 9, 2, 3};
         sort(nums, nums.length - 1, 0);

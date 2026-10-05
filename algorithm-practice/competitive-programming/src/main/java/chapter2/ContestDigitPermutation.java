@@ -1,6 +1,6 @@
 package chapter2;
 
-public class Permutation {
+public class ContestDigitPermutation {
 
     public static void printNum() {
         for (int i = 111; i <= 333; i++) {

@@ -4,7 +4,7 @@ import chapter2_1_elementorysort.AbstractSort;
 
 import java.util.Arrays;
 
-public class MergeSort extends AbstractSort {
+public class PrincetonMergeSort extends AbstractSort {
 
     public static Comparable[] aux;
 
@@ -63,7 +63,7 @@ public class MergeSort extends AbstractSort {
     public static void main(String[] args) {
         Integer[] a = {6, 5, 2, 8, 0, 1, 8, 3, 9, 2};
         Integer[] a2 = {6, 5, 2, 8, 0, 1, 8, 3, 9, 2};
-        MergeSort mergeSort = new MergeSort();
+        PrincetonMergeSort mergeSort = new PrincetonMergeSort();
         mergeSort.sort(a);
         mergeSort.sortBU(a2);
         System.out.println(Arrays.toString(a));

@@ -17,7 +17,7 @@ import java.util.*;
  * 4. find all unique paris by array index
  */
 
-public class TwoSum {
+public class PrincetonTwoSum {
 
     /**
      * time complexity: N * N

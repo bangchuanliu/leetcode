@@ -82,11 +82,13 @@ Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun`
 searches `leetcode-practice/`, `interview-practice/` and every module in
 `algorithm-practice/`, and can be invoked from any directory.
 
-Just use the file name. If it exists in more than one folder,
-`leetcode-practice` wins, then `interview-practice`, then
-`algorithm-practice` (jrun prints which file it picked). If it's still
-ambiguous, jrun shows a numbered list to pick from. To choose a specific
-copy, add its folder as a prefix, e.g. `scripts/jrun airbnb/CoinChange`.
+Just use the file name — class names are unique across the whole repo.
+When the same problem appears in more than one folder, the copy outside
+`leetcode-practice` is prefixed with its source, e.g. `AirbnbCoinChange`,
+`PrincetonTwoSum`, `PearlsQuickSort`, `ContestPermutation`,
+`StanfordUtil`. (If a duplicate name is ever added again, jrun prefers
+`leetcode-practice`, then `interview-practice`, then `algorithm-practice`, or
+shows a numbered list to pick from.)
 
 ### Use `jrun` from any folder
 
