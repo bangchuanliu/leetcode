@@ -39,27 +39,31 @@ Shared helper classes (`TreeNode`, `ListNode`, etc.) live in `src/main/java/comm
 There are no external/3rd-party dependencies, so a full Maven build isn't
 needed — plain `javac`/`java` is enough.
 
-### Build and run everything
+### Build everything
 
 ```bash
 ./build.sh                             # compiles every .java file into out/
 java -cp out leetcode.dp.CoinChange    # run a specific solution (if it has a main method)
 ```
 
-`build.sh` just runs `javac` over all sources in `src/main/java` and puts the
-compiled classes in `out/` (ignored by git).
+### Run a single file with `jrun`
 
-### Compile and run a single file
-
-You don't need to build the whole project to try out one solution. Use
-`-sourcepath` so `javac` automatically pulls in any `common` helper classes
-(e.g. `TreeNode`, `ListNode`) the file depends on:
+The `jrun` script is the easy way to try out one solution without building
+the whole project or writing any extra code:
 
 ```bash
-javac -d out -sourcepath src/main/java src/main/java/leetcode/tree/InvertBinaryTree.java
-java -cp out leetcode.tree.InvertBinaryTree
+./jrun FileName                        # compiles FileName.java and runs its main(...)
+./jrun FileName methodName             # compiles FileName.java and calls methodName() on it
+./jrun FileName methodName arg1 arg2   # ...passing arguments to the method
 ```
 
-Replace the path/class name with the solution you want to run. If the class
-doesn't have a `main` method, add one temporarily (or write a quick throwaway
-test) to call its solution method with sample input.
+Examples:
+
+```bash
+./jrun CoinChange                      # runs CoinChange's main(String[]) method
+./jrun CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
+```
+
+Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun` finds
+the file anywhere under `src/main/java`, so you only need its name, not the
+full path.

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Compile and run a single solution file, without building the whole project.
+#
+#   ./jrun FileName                 # compiles FileName.java and runs its main(String[])
+#   ./jrun FileName methodName      # compiles FileName.java and calls methodName() on it
+#   ./jrun FileName methodName a b  # ...passing a, b as the method's arguments
+#
+# Array arguments are comma-separated, e.g.:
+#   ./jrun CoinChange coinChange 1,2,5 11
+set -euo pipefail
+
+if [ "$#" -lt 1 ]; then
+  echo "Usage: jrun <FileName> [methodName] [args...]" >&2
+  exit 1
+fi
+
+FILE_NAME="$1"
+shift
+
+SRC_DIR="src/main/java"
+OUT_DIR=".jrun-out"
+
+MATCH=$(find "$SRC_DIR" -name "${FILE_NAME}.java")
+COUNT=$(echo "$MATCH" | grep -c . || true)
+
+if [ -z "$MATCH" ]; then
+  echo "No file named ${FILE_NAME}.java found under $SRC_DIR" >&2
+  exit 1
+fi
+if [ "$COUNT" -gt 1 ]; then
+  echo "Multiple files named ${FILE_NAME}.java found, pick one:" >&2
+  echo "$MATCH" >&2
+  exit 1
+fi
+
+PACKAGE=$(grep -m1 '^package ' "$MATCH" | sed 's/package //; s/;//')
+CLASS_NAME="${PACKAGE}.${FILE_NAME}"
+
+mkdir -p "$OUT_DIR"
+javac -d "$OUT_DIR" -sourcepath "$SRC_DIR" "$MATCH" tools/JRunner.java
+
+java -cp "$OUT_DIR" JRunner "$CLASS_NAME" "$@"
