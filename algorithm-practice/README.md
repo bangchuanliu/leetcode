@@ -1,4 +1,4 @@
-# courses-and-books
+# algorithm-practice
 
 Exercises worked through while following algorithm courses and books (this
 folder was previously named `algorithm-examples`). Each module is an
@@ -20,14 +20,14 @@ independent Maven project aggregated by this folder's `pom.xml`.
 - **`hackerrank`** — a couple of HackerRank practice problems.
 
 The LeetCode solutions and company interview questions that used to live
-here have moved to the top-level [`leetcode/`](../leetcode) and
-[`company-interviews/`](../company-interviews) folders.
+here have moved to the top-level [`leetcode-practice/`](../leetcode-practice) and
+[`interview-practice/`](../interview-practice) folders.
 
-Unlike `leetcode/`, several of these modules declare a real (test-only)
+Unlike `leetcode-practice/`, several of these modules declare a real (test-only)
 dependency on JUnit, so building/testing the whole suite still uses Maven:
 
 ```bash
-cd courses-and-books
+cd algorithm-practice
 mvn test
 ```
 

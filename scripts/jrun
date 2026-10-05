@@ -8,8 +8,8 @@
 # Array arguments are comma-separated, e.g.:
 #   scripts/jrun CoinChange coinChange 1,2,5 11
 #
-# Looks for FileName.java under leetcode/, company-interviews/ and every
-# module under courses-and-books/ (each one's src/main/java). If the same
+# Looks for FileName.java under leetcode-practice/, interview-practice/ and every
+# module under algorithm-practice/ (each one's src/main/java). If the same
 # file name exists in more than one place, disambiguate with a path suffix
 # instead of just the file name, e.g.:
 #   scripts/jrun leetcode/dp/CoinChange coinChange 1,2,5 11
@@ -27,8 +27,8 @@ OUT_DIR="scripts/target/jrun"
 
 cd "$(dirname "$0")/.."
 
-SRC_ROOTS=("leetcode/src/main/java" "company-interviews/src/main/java")
-for d in courses-and-books/*/src/main/java; do
+SRC_ROOTS=("leetcode-practice/src/main/java" "interview-practice/src/main/java")
+for d in algorithm-practice/*/src/main/java; do
   [ -d "$d" ] && SRC_ROOTS+=("$d")
 done
 

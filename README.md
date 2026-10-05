@@ -9,14 +9,14 @@ solution as a public method (e.g. `coinChange(...)`), and many also include a
 
 | Folder | What's inside |
 |---|---|
-| [`leetcode/`](leetcode) | LeetCode solutions grouped by topic: `leetcode/src/main/java/leetcode/<topic>` (+ shared helpers in `.../common`) |
-| [`company-interviews/`](company-interviews) | Company-tagged interview questions: `company-interviews/src/main/java/<company>` (`airbnb`, `facebook`, `google`) |
-| [`courses-and-books/`](courses-and-books) | Exercises from algorithm courses and books (Stanford, Princeton, Programming Pearls, competitive programming, HackerRank) — see its [README](courses-and-books/README.md) |
+| [`leetcode-practice/`](leetcode-practice) | LeetCode solutions grouped by topic: `leetcode-practice/src/main/java/leetcode/<topic>` (+ shared helpers in `.../common`) |
+| [`interview-practice/`](interview-practice) | Company-tagged interview questions: `interview-practice/src/main/java/<company>` (`airbnb`, `facebook`, `google`) |
+| [`algorithm-practice/`](algorithm-practice) | Exercises from algorithm courses and books (Stanford, Princeton, Programming Pearls, competitive programming, HackerRank) — see its [README](algorithm-practice/README.md) |
 | [`scripts/`](scripts) | `jrun` (run a single file), `build.sh` (build everything), `tools/` (runner helper), `target/` (build output, gitignored) |
 
 ## leetcode topics
 
-Under `leetcode/src/main/java/leetcode/`:
+Under `leetcode-practice/src/main/java/leetcode/`:
 
 - `array` / `string` — array and string manipulation
 - `linkedlist` — linked list problems
@@ -46,7 +46,7 @@ Under `leetcode/src/main/java/leetcode/`:
 - `unionfind` — union-find (disjoint set) problems
 
 Shared helper classes (`TreeNode`, `ListNode`, etc.) live in
-`leetcode/src/main/java/common`.
+`leetcode-practice/src/main/java/common`.
 
 ## Build
 
@@ -56,7 +56,7 @@ needed — plain `javac`/`java` is enough.
 ### Build everything
 
 ```bash
-scripts/build.sh                                     # compiles everything under leetcode/ into scripts/target/build
+scripts/build.sh                                     # compiles everything under leetcode-practice/ into scripts/target/build
 java -cp scripts/target/build leetcode.dp.CoinChange # run a specific solution (if it has a main method)
 ```
 
@@ -79,8 +79,8 @@ scripts/jrun dp/CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) d
 ```
 
 Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun`
-searches `leetcode/`, `company-interviews/` and every module in
-`courses-and-books/`, and can be invoked from any directory (e.g.
+searches `leetcode-practice/`, `interview-practice/` and every module in
+`algorithm-practice/`, and can be invoked from any directory (e.g.
 `~/projects/leetcode/scripts/jrun CoinChange`). If a file name exists in more than
 one place, `jrun` lists every match — rerun with a path suffix to
 disambiguate, e.g. `scripts/jrun leetcode/dp/CoinChange` or

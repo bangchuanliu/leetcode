@@ -4,7 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-SRC_DIR="leetcode/src/main/java"
+SRC_DIR="leetcode-practice/src/main/java"
 OUT_DIR="scripts/target/build"
 
 rm -rf "$OUT_DIR"
