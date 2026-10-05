@@ -12,7 +12,7 @@ solution as a public method (e.g. `coinChange(...)`), and many also include a
 | [`leetcode-practice/`](leetcode-practice) | LeetCode solutions grouped by topic: `leetcode-practice/src/main/java/leetcode/<topic>` (+ shared helpers in `.../common`) |
 | [`interview-practice/`](interview-practice) | Company-tagged interview questions: `interview-practice/src/main/java/<company>` (`airbnb`, `facebook`, `google`) |
 | [`algorithm-practice/`](algorithm-practice) | Exercises from algorithm courses and books (Stanford, Princeton, Programming Pearls, competitive programming, HackerRank) — see its [README](algorithm-practice/README.md) |
-| [`scripts/`](scripts) | `jrun` (run a single file), `build.sh` (build everything), `tools/` (runner helper), `target/` (build output, gitignored) |
+| [`scripts/`](scripts) | `jrun` (run a single file), `install.sh` (add `jrun` alias to `~/.zshrc`), `build.sh` (build everything), `tools/` (runner helper), `target/` (build output, gitignored) |
 
 ## leetcode topics
 
@@ -86,8 +86,15 @@ one place, `jrun` lists every match — rerun with a path suffix to
 disambiguate, e.g. `scripts/jrun leetcode/dp/CoinChange` or
 `scripts/jrun airbnb/CoinChange`.
 
-Tip: add an alias so you can just type `jrun` anywhere:
+### Use `jrun` from any folder
+
+Run the installer once to add a `jrun` alias to `~/.zshrc` (it also puts a
+Homebrew JDK on `PATH` if no working JDK is found):
 
 ```bash
-alias jrun=~/projects/leetcode/scripts/jrun
+scripts/install.sh
+source ~/.zshrc
+jrun dp/CoinChange coinChange 1,2,5 11   # works from any directory
 ```
+
+Re-running `scripts/install.sh` is safe — it replaces its previous block.
