@@ -38,4 +38,4 @@ rm -f "$tmp"
 } >> "$RC_FILE"
 
 echo "Added jrun to $RC_FILE${JDK_BIN:+ (with JDK from $JDK_BIN)}."
-echo "Run 'source $RC_FILE' or open a new terminal, then e.g.: jrun dp/CoinChange coinChange 1,2,5 11"
+echo "Run 'source $RC_FILE' or open a new terminal, then e.g.: jrun CoinChange coinChange 1,2,5 11"

@@ -74,17 +74,19 @@ scripts/jrun FileName methodName arg1 arg2   # ...passing arguments to the metho
 Examples:
 
 ```bash
-scripts/jrun dp/CoinChange                   # runs CoinChange's main(String[]) method
-scripts/jrun dp/CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
+scripts/jrun CoinChange                      # runs CoinChange's main(String[]) method
+scripts/jrun CoinChange coinChange 1,2,5 11  # calls coinChange(int[], int) directly, prints 3
 ```
 
 Array arguments are comma-separated (e.g. `1,2,5` for `int[]`). `jrun`
 searches `leetcode-practice/`, `interview-practice/` and every module in
-`algorithm-practice/`, and can be invoked from any directory (e.g.
-`~/projects/leetcode/scripts/jrun CoinChange`). If a file name exists in more than
-one place, `jrun` lists every match — rerun with a path suffix to
-disambiguate, e.g. `scripts/jrun leetcode/dp/CoinChange` or
-`scripts/jrun airbnb/CoinChange`.
+`algorithm-practice/`, and can be invoked from any directory.
+
+Just use the file name. If it exists in more than one folder,
+`leetcode-practice` wins, then `interview-practice`, then
+`algorithm-practice` (jrun prints which file it picked). If it's still
+ambiguous, jrun shows a numbered list to pick from. To choose a specific
+copy, add its folder as a prefix, e.g. `scripts/jrun airbnb/CoinChange`.
 
 ### Use `jrun` from any folder
 
@@ -94,7 +96,7 @@ Homebrew JDK on `PATH` if no working JDK is found):
 ```bash
 scripts/install.sh
 source ~/.zshrc
-jrun dp/CoinChange coinChange 1,2,5 11   # works from any directory
+jrun CoinChange coinChange 1,2,5 11   # works from any directory
 ```
 
 Re-running `scripts/install.sh` is safe — it replaces its previous block.
